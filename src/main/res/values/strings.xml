@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BMI</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="bmi_height">Height (m)</string>
+    <string name="bmi_weight">Weight (kg)</string>
+</resources>
