@@ -5,4 +5,9 @@
     <string name="action_settings">Settings</string>
     <string name="bmi_height">Height (m)</string>
     <string name="bmi_weight">Weight (kg)</string>
+    <string name="show_result">Your BMI is </string>
+    <string name="too_heavy">You do not need to serve in the army</string>
+    <string name="heavy">You need to do more exercise</string>
+    <string name="normal">You have a nice shape</string>
+    <string name="thin">You are too thin.</string>
 </resources>
