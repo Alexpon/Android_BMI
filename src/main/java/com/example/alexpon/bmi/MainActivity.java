@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
@@ -50,21 +51,24 @@ public class MainActivity extends ActionBarActivity {
             switch (v.getId()){
                 case R.id.submit:
                     DecimalFormat df = new DecimalFormat("0.00");
-                    double height = Double.parseDouble(input_height.getText().toString())/100;
-                    double weight = Double.parseDouble(input_weight.getText().toString());
-                    double bmi = weight / (height*height);
-                    show_bmi.setText(getText(R.string.show_result) + df.format(bmi));
-                    if(bmi>31.5){
-                        show_sug.setText(getText(R.string.too_heavy));
+                    try {
+                        double height = Double.parseDouble(input_height.getText().toString()) / 100;
+                        double weight = Double.parseDouble(input_weight.getText().toString());
+                        double bmi = weight / (height * height);
+                        show_bmi.setText(getText(R.string.show_result) + df.format(bmi));
+                        if (bmi > 31.5) {
+                            show_sug.setText(getText(R.string.too_heavy));
+                        } else if (bmi > 25 && bmi <= 31.5) {
+                            show_sug.setText(getText(R.string.heavy));
+                        } else if (bmi <= 20) {
+                            show_sug.setText(getText(R.string.thin));
+                        } else {
+                            show_sug.setText(getText(R.string.normal));
+                        }
                     }
-                    else if(bmi>25 && bmi<=31.5){
-                        show_sug.setText(getText(R.string.heavy));
-                    }
-                    else if(bmi<=20){
-                        show_sug.setText(getText(R.string.thin));
-                    }
-                    else{
-                        show_sug.setText(getText(R.string.normal));
+                    catch(Exception obj){
+                       Toast alert = Toast.makeText(MainActivity.this, R.string.alert_no_input, Toast.LENGTH_SHORT);
+                       alert.show();
                     }
                     break;
                 case R.id.clear:

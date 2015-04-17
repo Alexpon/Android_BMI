@@ -10,4 +10,5 @@
     <string name="heavy">You need to do more exercise</string>
     <string name="normal">You have a nice shape</string>
     <string name="thin">You are too thin.</string>
+    <string name="alert_no_input">Input error. Please try again.</string>
 </resources>
