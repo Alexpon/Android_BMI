@@ -1,6 +1,8 @@
 package com.example.alexpon.bmi;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.net.Uri;
 
 import java.text.DecimalFormat;
 
@@ -67,8 +70,8 @@ public class MainActivity extends ActionBarActivity {
                         }
                     }
                     catch(Exception obj){
-                       Toast alert = Toast.makeText(MainActivity.this, R.string.alert_no_input, Toast.LENGTH_SHORT);
-                       alert.show();
+                       Toast.makeText(MainActivity.this, R.string.alert_no_input, Toast.LENGTH_SHORT)
+                       .show();
                     }
                     break;
                 case R.id.clear:
@@ -90,16 +93,37 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_close:
+                finish();
+                break;
+            case R.id.action_about:
+                openOptionsDialog();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
     }
+    private void openOptionsDialog(){
+        new AlertDialog.Builder(MainActivity.this)
+            .setTitle(R.string.dialog_title)
+            .setMessage(R.string.dialog_content)
+            .setPositiveButton(android.R.string.ok,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialoginterface, int i) {
+                        }
+                    }
+            )
+            .setNegativeButton(R.string.website,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Uri uri = Uri.parse("http://en.wikipedia.org/wiki/Body_mass_index");
+                            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                            startActivity(intent);
+                        }
+                    })
+            .show();
+    }
+
 }
